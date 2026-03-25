@@ -46,26 +46,27 @@ const adicionarDespesa = () => {
 };
 
 const atualizarTela = () => {
-    const htmlDaLista = despesas.map(item => {
-        return ` 
+  const htmlDaLista = despesas.map((item) => {
+    return ` 
         <li> 
          <div> 
             <strong>${item.descricao}</strong> <br>
             <small>U$ ${item.valorEstrangeiro.toFixed(2)}</small>
             </div>
-        `;  
-    });
+            <span class="valor">R$ ${item.valorReal.toFixed(2)}</span>
+            </li>
+        `;
+  });
 
-    listaDespesasDOM.innerHTML = htmlDaLista.join('');
+  listaDespesasDOM.innerHTML = htmlDaLista.join("");
 
-    let somaTotal = 0;
+  let somaTotal = 0;
 
-    despesas.fotEach(item => {
-      somaTotal += item.valorReal; // Equivalente a: somaTotal = somaTotal + item.valorReal
-    });
+  despesas.fotEach((item) => {
+    somaTotal += item.valorReal; // Equivalente a: somaTotal = somaTotal + item.valorReal
+  });
 
-    totalBrlDOM.textContent = `R$ ${somaTotal.toFixed(2)}`;
+  totalBrlDOM.textContent = `R$ ${somaTotal.toFixed(2)}`;
 };
 
 atualizarTela();
-
