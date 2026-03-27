@@ -21,7 +21,7 @@ body {
   background-color: rgba(255, 255, 255, 0.171);
 }
 header {
-  background-color: #0ea5e9;
+  background-color: #e9830e;
   color: white;
   padding: 20px;
   text-align: center;
@@ -50,7 +50,7 @@ input {
   gap: 10px;
 }
 button {
-  background-color: #0ea5e9;
+  background-color: rgb(201, 130, 0);
   color: white;
   border: none;
   padding: 15px;
@@ -76,7 +76,7 @@ button {
 }
 
 button:hover {
-  background-color: #0284c7;
+  background-color: #835e00;
 }
 .lista-container {
   padding: 0 20px 20px 20px;
@@ -90,7 +90,7 @@ li {
   background: #f8fafc;
   padding: 15px;
   border-radius: 6px;
-  border-left: 4px solid #0ea5e9;
+  border-left: 4px solid #e9990e;
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
@@ -99,5 +99,5 @@ li {
 }
 li span.valor {
   font-weight: bold;
-  color: #00aeff;
+  color: #dc8b00;
 }
