@@ -19,13 +19,13 @@ const adicionarDespesa = () => {
     alert(
       "Por favor, preencha todos os campos corretamente com valores válidos.",
     );
-    return; // interrompe a execução da função imediatamente.
+    return;
   }
 
   const valorConvertidoBRL = valorOriginal * cotacao;
 
   const novaDespesa = {
-    id: Date.now(), // Gera um número único baseado nos milissegundos atuais para identificar o item
+    id: Date.now(),
     descricao: desc,
     valorEstrangeiro: valorOriginal,
     valorReal: valorConvertidoBRL,
@@ -39,10 +39,15 @@ const adicionarDespesa = () => {
   inputCotacao.value = "";
 
   atualizarTela();
-  };
+};
 
-  btnAdicionar.addEventListener('click', adicionarDespesa);
+btnAdicionar.addEventListener("click", adicionarDespesa);
 
+const removerDespesa = (id) => {
+  despesas = despesas.filter((item) => item.id !== Number(id));
+  salvarNoLocalStorage();
+  atualizarTela();
+};
 
 const atualizarTela = () => {
   const htmlDaLista = despesas.map((item) => {
@@ -51,17 +56,25 @@ const atualizarTela = () => {
          <div> 
             <strong>${item.descricao}</strong> <br>
             <small>U$ ${item.valorEstrangeiro.toFixed(2)}</small>
-            </div>
+          </div>
             <span class="valor">R$ ${item.valorReal.toFixed(2)}</span>
-            </li>
+           <button class="btn-delete" data-id="${item.id}">X</button>
+        </li>
         `;
   });
 
   listaDespesasDOM.innerHTML = htmlDaLista.join("");
 
+  document.querySelectorAll(".btn-delete").forEach((botao) => {
+    botao.addEventListener("click", (e) => {
+      const id = e.target.dataset.id;
+      removerDespesa(id);
+    });
+  });
+
   let somaTotal = 0;
 
-  despesas.forEach(item => {
+  despesas.forEach((item) => {
     somaTotal += item.valorReal;
   });
 
@@ -69,4 +82,3 @@ const atualizarTela = () => {
 };
 
 atualizarTela();
-
